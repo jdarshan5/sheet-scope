@@ -55,6 +55,7 @@
   },
   "homepage": "https://jdarshan5.github.io/sheet-scope/",
   "publishConfig": {
+    "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
