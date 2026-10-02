@@ -83,6 +83,14 @@ Remember to add tests for your change if possible. Run the unit tests by:
 yarn test
 ```
 
+The documentation website lives in the `website/` directory and is built with [Docusaurus](https://docusaurus.io/). It's a separate Yarn project with its own `yarn.lock`, not a workspace, so install its dependencies there:
+
+```sh
+cd website
+yarn
+yarn start
+```
+
 
 ### Commit message convention
 
