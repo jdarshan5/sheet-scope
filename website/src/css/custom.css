@@ -1,0 +1,340 @@
+/**
+ * Global styles. The classic preset bundles Infima; these override its
+ * variables and add the few tokens the landing page uses.
+ *
+ * The look follows @gorhom/docusaurus-theme, the theme behind
+ * gorhom.dev/react-native-bottom-sheet: a plain black or white page, a
+ * blueprint grid fading out under a blurred navbar, and quiet sidebars.
+ * Much of this file is adapted from that package's `custom.css` (v1.1.0,
+ * https://github.com/gorhom/docusaurus), which is MIT licensed:
+ *
+ * Copyright (c) Mo Gorhom
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+/* #region theme */
+:root {
+  --ifm-container-width: 1140px;
+  --ifm-container-width-xl: 1140px;
+
+  --ifm-hr-background-color: var(--ifm-color-emphasis-300);
+  --ifm-hr-height: 0.25px;
+
+  --ifm-table-cell-padding: 0.5rem;
+  --ifm-table-head-font-weight: var(--ifm-font-weight-semibold);
+
+  --ifm-font-family-base:
+    system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, Cantarell,
+    'Noto Sans', sans-serif, BlinkMacSystemFont, Helvetica, Arial,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --ifm-font-family-monospace:
+    SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+    monospace;
+  --ifm-code-font-size: 90%;
+
+  --ss-muted: var(--ifm-color-emphasis-700);
+  --ss-line: var(--ifm-color-emphasis-300);
+  --ss-danger: #c6362b;
+  --ss-danger-ink: #ffffff;
+  --ss-phone-bezel: #1c1c20;
+  --ss-phone-bg: #ffffff;
+  --ss-phone-sheet: #ffffff;
+  --ss-phone-fill: #f2f2f3;
+  --ss-phone-line: #e6e6e8;
+}
+
+[data-theme='light'] {
+  --ifm-color-primary: #0a84e6;
+  --ifm-color-primary-dark: #0977cf;
+  --ifm-color-primary-darker: #0870c4;
+  --ifm-color-primary-darkest: #075ca1;
+  --ifm-color-primary-light: #2290e8;
+  --ifm-color-primary-lighter: #2f96ea;
+  --ifm-color-primary-lightest: #54a9ee;
+  --ifm-background-color: #fff;
+  --ifm-toc-border-color-active: var(--ifm-color-emphasis-700);
+  --ifm-navbar-background-color: rgba(245, 246, 247, 0.5);
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #0099fe;
+  --ifm-color-primary-dark: #008ae5;
+  --ifm-color-primary-darker: #0082d8;
+  --ifm-color-primary-darkest: #006bb2;
+  --ifm-color-primary-light: #1aa3fe;
+  --ifm-color-primary-lighter: #26a8fe;
+  --ifm-color-primary-lightest: #4cb8fe;
+  --ifm-background-color: #000 !important;
+  --ifm-toc-border-color-active: var(--ifm-color-emphasis-500);
+  --ifm-navbar-background-color: rgba(28, 30, 33, 0.5);
+  --ifm-table-border-color: var(--ifm-color-emphasis-200);
+  --ifm-table-head-background: var(--ifm-color-emphasis-100);
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+
+  --ss-line: var(--ifm-color-emphasis-200);
+  --ss-danger: #ff6b5e;
+  --ss-danger-ink: #1d0907;
+  --ss-phone-bezel: #2a2a2e;
+  --ss-phone-bg: #121214;
+  --ss-phone-sheet: #1e1e21;
+  --ss-phone-fill: #232326;
+  --ss-phone-line: #2c2c30;
+}
+
+.container {
+  max-width: var(--ifm-container-width-xl) !important;
+}
+/* #endregion */
+
+/* #region root */
+/* The blueprint grid behind the top of every page. */
+#__docusaurus::after {
+  content: '';
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: calc(25vh + var(--ifm-navbar-height));
+  z-index: -10;
+  opacity: 0.65;
+
+  --bp-unit-width: 24px;
+  --bp-units-per-group: 5;
+  --bp-units-line-width: 1px;
+  --bp-groups-line-width: 1px;
+  --bp-groups-bounds-color: var(--ifm-color-emphasis-200);
+  --bp-units-bounds-color: var(--ifm-color-emphasis-100);
+  --bp-group: calc(var(--bp-unit-width) * var(--bp-units-per-group));
+  -webkit-mask-image: linear-gradient(white, transparent);
+  mask-image: linear-gradient(white, transparent);
+
+  background-position: center;
+  background-image:
+    linear-gradient(
+      var(--bp-groups-bounds-color) var(--bp-groups-line-width),
+      transparent var(--bp-groups-line-width)
+    ),
+    linear-gradient(
+      90deg,
+      var(--bp-groups-bounds-color) var(--bp-groups-line-width),
+      transparent var(--bp-groups-line-width)
+    ),
+    linear-gradient(
+      var(--bp-units-bounds-color) var(--bp-units-line-width),
+      transparent var(--bp-units-line-width)
+    ),
+    linear-gradient(
+      90deg,
+      var(--bp-units-bounds-color) var(--bp-units-line-width),
+      transparent var(--bp-units-line-width)
+    );
+  background-size:
+    var(--bp-group) var(--bp-group),
+    var(--bp-group) var(--bp-group),
+    var(--bp-unit-width) var(--bp-unit-width),
+    var(--bp-unit-width) var(--bp-unit-width);
+}
+
+[data-theme='light'] #__docusaurus::after {
+  opacity: 1;
+}
+/* #endregion */
+
+/* #region footer */
+.footer {
+  font-size: 90%;
+  border-top: 0.25px solid var(--ifm-navbar-background-color);
+
+  --ifm-footer-background-color: var(--ifm-navbar-background-color);
+  --ifm-footer-link-color: var(--ifm-color-emphasis-700);
+  --ifm-footer-title-color: var(--ifm-color-emphasis-900);
+}
+
+.footer .footer__links {
+  margin-bottom: 0;
+}
+
+.footer .footer__links svg {
+  display: none;
+}
+
+.footer .footer__bottom {
+  color: var(--ifm-color-emphasis-600);
+}
+
+@media (max-width: 996px) {
+  .footer__link-item {
+    display: inline;
+  }
+
+  .footer__link-separator {
+    display: inline;
+  }
+}
+/* #endregion */
+
+/* #region navbar */
+.navbar {
+  justify-content: center;
+  border-bottom: 0.25px solid var(--ifm-navbar-background-color);
+}
+
+.navbar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  -webkit-backdrop-filter: blur(25px);
+  backdrop-filter: blur(25px);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+[data-theme='light'] .navbar::before {
+  background: rgba(255, 255, 255, 0.125);
+}
+
+.navbar .navbar__inner {
+  max-width: var(--ifm-container-width);
+}
+
+.navbar .navbar-sidebar {
+  background-color: var(--ifm-color-emphasis-100);
+}
+/* #endregion */
+
+/* #region docs layout */
+/* Docs pages sit in the same centred column as the navbar, with a narrow
+   sidebar and no rule beside it. The stock theme's layout classes are CSS
+   modules, so these match them by prefix. */
+html.docs-wrapper {
+  --doc-sidebar-width: 200px;
+}
+
+html.docs-wrapper [class*='docsWrapper_'] {
+  justify-content: center;
+}
+
+html.docs-wrapper [class*='docRoot_'] {
+  max-width: var(--ifm-container-width);
+}
+
+html.docs-wrapper [class*='docSidebarContainer_'] {
+  border-right: none;
+}
+/* #endregion */
+
+/* #region TOC */
+.table-of-contents::before {
+  content: '';
+  position: absolute;
+  top: calc(var(--ifm-toc-padding-vertical) * 2);
+  bottom: calc(var(--ifm-toc-padding-vertical) * 2);
+  left: 0;
+  width: 1px;
+  background-color: var(--ifm-toc-border-color);
+}
+
+article .table-of-contents::before {
+  content: none;
+}
+
+.table-of-contents .table-of-contents__link--active {
+  display: flex;
+}
+
+.theme-doc-toc-desktop {
+  overflow: visible;
+}
+
+.table-of-contents > li > .table-of-contents__link--active::before,
+.table-of-contents > li > ul > li > .table-of-contents__link--active::before {
+  transition: all var(--ifm-transition-fast)
+    var(--ifm-transition-timing-default);
+  width: 2px;
+  border-radius: 2px;
+  background-color: var(--ifm-toc-border-color-active);
+  z-index: 100;
+}
+
+.table-of-contents > li > .table-of-contents__link--active::before {
+  content: '';
+  margin-left: calc(var(--ifm-toc-padding-horizontal) * -2 - 0.5px);
+  margin-right: calc(var(--ifm-toc-padding-horizontal) * 2 - 2px);
+}
+
+.table-of-contents > li > ul > li > .table-of-contents__link--active::before {
+  content: '';
+  margin-left: calc(var(--ifm-toc-padding-horizontal) * -4);
+  margin-right: calc(var(--ifm-toc-padding-horizontal) * 4 - 2px);
+}
+/* #endregion */
+
+/* #region table */
+table {
+  display: table;
+  width: 100%;
+  height: 0;
+  box-sizing: border-box;
+  border: var(--ifm-table-border-width) solid var(--ifm-table-border-color);
+  border-spacing: 0;
+  border-collapse: separate;
+  border-radius: var(--ifm-global-radius);
+  font-size: 85%;
+  text-align: left;
+}
+
+table tr,
+table th,
+table td {
+  border: none;
+}
+
+table tr th {
+  border-bottom: var(--ifm-table-border-width) solid
+    var(--ifm-table-border-color);
+}
+
+table tr th:first-child {
+  border-top-left-radius: var(--ifm-global-radius);
+}
+
+table tr th:last-child {
+  border-top-right-radius: var(--ifm-global-radius);
+}
+/* #endregion */
+
+/* #region menu */
+.menu__list .menu__list {
+  padding-left: 0 !important;
+}
+
+.menu__list .menu__list .menu__link {
+  padding-left: calc(var(--ifm-menu-link-padding-horizontal) * 1.5);
+}
+
+.menu__list-item-collapsible--active,
+.menu__link--active:not(.menu__link--sublist),
+.menu__list-item-collapsible:hover,
+.menu__link:hover,
+.menu__caret:hover,
+.theme-doc-sidebar-item-link:hover {
+  background: none !important;
+}
+/* #endregion */

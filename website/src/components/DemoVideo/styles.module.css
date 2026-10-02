@@ -1,0 +1,44 @@
+.figure {
+  margin: 28px 0 32px;
+  text-align: center;
+}
+
+.tabs {
+  justify-content: center;
+  margin-bottom: 14px;
+  font-size: 0.9rem;
+}
+
+/* The same bezel as the landing page's phone. */
+.phone {
+  width: min(272px, 100%);
+  margin: 0 auto 14px;
+  padding: 9px;
+  border-radius: 42px;
+  background: var(--ss-phone-bezel);
+  box-shadow: 0 34px 60px -34px rgba(0, 0, 0, 0.55);
+}
+
+.video {
+  display: block;
+  width: 100%;
+  border-radius: 33px;
+  background: var(--ss-phone-bg);
+}
+
+/* Each platform's recording size. Reserving the space stops the page jumping. */
+.ios {
+  aspect-ratio: 540 / 1174;
+}
+
+.android {
+  aspect-ratio: 540 / 1200;
+}
+
+.caption {
+  max-width: 460px;
+  margin: 0 auto;
+  color: var(--ss-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
