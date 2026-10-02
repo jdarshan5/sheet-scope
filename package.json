@@ -1,7 +1,7 @@
 {
   "name": "@jdarshan5/sheet-scope",
   "version": "0.1.0",
-  "description": "Scoped, lazily-mounted, typed sheet manager for @gorhom/bottom-sheet",
+  "description": "Scoped, lazily-mounted, typed bottom sheet manager for React Native, built on @gorhom/bottom-sheet",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
   "exports": {
@@ -15,17 +15,6 @@
   "files": [
     "src",
     "lib",
-    "android",
-    "ios",
-    "cpp",
-    "*.podspec",
-    "react-native.config.js",
-    "!ios/build",
-    "!android/build",
-    "!android/gradle",
-    "!android/gradlew",
-    "!android/gradlew.bat",
-    "!android/local.properties",
     "!**/__tests__",
     "!**/__fixtures__",
     "!**/__mocks__",
@@ -42,8 +31,18 @@
   },
   "keywords": [
     "react-native",
+    "expo",
     "ios",
-    "android"
+    "android",
+    "bottom-sheet",
+    "bottom-sheet-modal",
+    "react-native-bottom-sheet",
+    "gorhom",
+    "gorhom-bottom-sheet",
+    "modal",
+    "sheet",
+    "sheet-manager",
+    "typescript"
   ],
   "repository": {
     "type": "git",
@@ -54,7 +53,7 @@
   "bugs": {
     "url": "https://github.com/jdarshan5/sheet-scope/issues"
   },
-  "homepage": "https://github.com/jdarshan5/sheet-scope#readme",
+  "homepage": "https://jdarshan5.github.io/sheet-scope/",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
@@ -63,11 +62,13 @@
     "@eslint/compat": "^2.1.0",
     "@eslint/eslintrc": "^3.3.6",
     "@eslint/js": "^9.39.5",
+    "@gorhom/bottom-sheet": "^5.2.14",
     "@jest/globals": "^29.7.0",
     "@react-native/babel-preset": "0.86.2",
     "@react-native/eslint-config": "0.86.2",
     "@react-native/jest-preset": "0.86.2",
     "@release-it/conventional-changelog": "^12.0.0",
+    "@testing-library/react-native": "^14.0.1",
     "@types/react": "^19.2.0",
     "commitlint": "^21.2.1",
     "del-cli": "^7.0.0",
@@ -81,12 +82,17 @@
     "react": "19.2.3",
     "react-native": "0.86.3",
     "react-native-builder-bob": "^0.43.1",
+    "react-native-gesture-handler": "~2.32.0",
+    "react-native-reanimated": "4.5.1",
+    "react-native-worklets": "0.10.1",
     "release-it": "^21.0.1",
+    "test-renderer": "~1.2.0",
     "turbo": "^2.10.8",
     "typescript": "^6.0.3"
   },
   "peerDependencies": {
-    "react": "*",
+    "@gorhom/bottom-sheet": "^5.0.0",
+    "react": ">=18",
     "react-native": "*"
   },
   "workspaces": [
@@ -96,6 +102,7 @@
   "react-native-builder-bob": {
     "source": "src",
     "output": "lib",
+    "exclude": "{**/{__tests__,__fixtures__,__mocks__}/**,**/*.d.ts}",
     "targets": [
       [
         "module",
@@ -124,12 +131,17 @@
       "customExportConditions": [
         "require",
         "react-native",
-        "<%- project.sourceCondition -%>"
+        "jdarshan5-sheet-scope-source"
       ]
     },
     "modulePathIgnorePatterns": [
       "<rootDir>/example/node_modules",
-      "<rootDir>/lib/"
+      "<rootDir>/lib/",
+      "<rootDir>/website/"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "\\.test-d\\.ts$"
     ]
   },
   "commitlint": {
